@@ -1,0 +1,39 @@
+<form class="flex-container">
+  <mat-form-field class="space-container">
+    <mat-label>DDD Origem:</mat-label>
+    <mat-select>
+    <mat-option
+      *ngFor="let ddds of dddsOfBrazil"
+      [value]="ddds">
+      {{ddds}}
+    </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="space-container">
+    <mat-label>DDD Destino:</mat-label>
+    <mat-select>
+    <mat-option
+      *ngFor="let ddds of dddsOfBrazil"
+      [value]="ddds">
+      {{ddds}}
+    </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="space-container">
+    <mat-label>Tempo de duração:</mat-label>
+    <input matInput placeholder="Ex. 20" value="">
+  </mat-form-field>
+
+  <mat-form-field class="space-container">
+    <mat-label>Escolha seu plano:</mat-label>
+    <mat-select>
+      <mat-option value="faleMais30">FaleMais 30</mat-option>
+      <mat-option value="faleMais60">FaleMais 60</mat-option>
+      <mat-option value="faleMais120">FaleMais 120</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button>Simular</button>
+</form>

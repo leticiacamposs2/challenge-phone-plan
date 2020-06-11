@@ -1,28 +1,37 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { of } from 'rxjs';
 
-import { ServicesService } from './services.service';
-import { DddsOfBrazil } from '../models/ddds-of-brazil';
+import { DashboardFilterComponent } from './dashboard-filter.component';
+import { ServicesService } from '../../services/services.service';
 
-describe('ServicesService', () => {
+describe('DashboardFilterComponent', () => {
+  let component: DashboardFilterComponent;
+  let fixture: ComponentFixture<DashboardFilterComponent>;
   let service: ServicesService;
-  let httpMock: HttpTestingController;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ DashboardFilterComponent ],
+      imports: [HttpClientModule],
+      providers: [ServicesService]
+    })
+    .compileComponents();
+  }));
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [ServicesService]
-    });
+    fixture = TestBed.createComponent(DashboardFilterComponent);
     service = TestBed.inject(ServicesService);
-    httpMock = TestBed.inject(HttpTestingController);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('deve buscar os dados do INEP de todos os DDDs do Brasil', () => {
-    const mockResponseDdds = {
+  it('deve retornar os DDDS do Brasil', () => {
+    const mockDdds = {
       payload: [
         '11',
         '12',
@@ -94,14 +103,11 @@ describe('ServicesService', () => {
       ]
     };
 
-    service.getDddsOfBrazil()
-      .subscribe((ddds: DddsOfBrazil) => {
-        expect(ddds.payload).toEqual(mockResponseDdds.payload);
-      });
+    const spyGetDddsOfBrazil = spyOn(service, 'getDddsOfBrazil')
+      .and.returnValue(of(mockDdds));
 
-    const request = httpMock.expectOne(req => {
-      return req.method === 'GET';
-    });
+    component.getDDDs();
 
+    expect(spyGetDddsOfBrazil).toHaveBeenCalled();
   });
 });

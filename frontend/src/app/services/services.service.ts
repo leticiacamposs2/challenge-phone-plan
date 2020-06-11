@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 
 import { DddsOfBrazil } from '../models/ddds-of-brazil';
 
-const API_URL = 'http://ddd.pricez.com.br/';
+const API_URL = 'http://ddd.pricez.com.br/ddds.json';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class ServicesService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getDddsOfBrazil(): Observable<DddsOfBrazil[]> {
-    return this.httpClient.get<DddsOfBrazil[]>(API_URL)
+  getDddsOfBrazil(): Observable<DddsOfBrazil> {
+    return this.httpClient.get <DddsOfBrazil>(API_URL)
       .pipe(
         retry(2),
         catchError(this.handleError));

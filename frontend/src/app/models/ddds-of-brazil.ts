@@ -1,3 +1,3 @@
 export interface DddsOfBrazil {
-  payload: Array<string>;
+  payload: string[];
 }

@@ -1,0 +1,7 @@
+.flex-container {
+  flex-direction: row;
+}
+
+.space-container {
+  margin: 10px;
+}
