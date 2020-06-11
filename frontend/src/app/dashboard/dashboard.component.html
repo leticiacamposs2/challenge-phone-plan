@@ -1,4 +1,11 @@
 <h1>Conheça o nosso plano FaleMais e simule as tarifas da sua ligação:</h1>
-<mat-card>
-  <app-dashboard-filter></app-dashboard-filter>
-</mat-card>
+<section class="filter">
+  <mat-card>
+    <app-dashboard-filter
+      (resultFilter)="getResultDashboardFilter($event)">
+    </app-dashboard-filter>
+  </mat-card>
+</section>
+<section class="result-list">
+  <app-dashboard-result-list></app-dashboard-result-list>
+</section>

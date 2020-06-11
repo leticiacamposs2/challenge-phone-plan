@@ -1,7 +1,9 @@
-<form class="flex-container">
+<form
+  class="flex-container"
+  [formGroup]="formFilter">
   <mat-form-field class="space-container">
     <mat-label>DDD Origem:</mat-label>
-    <mat-select>
+    <mat-select formControlName="dddsOrigin">
     <mat-option
       *ngFor="let ddds of dddsOfBrazil"
       [value]="ddds">
@@ -12,7 +14,7 @@
 
   <mat-form-field class="space-container">
     <mat-label>DDD Destino:</mat-label>
-    <mat-select>
+    <mat-select formControlName="dddsDestiny">
     <mat-option
       *ngFor="let ddds of dddsOfBrazil"
       [value]="ddds">
@@ -22,18 +24,25 @@
   </mat-form-field>
 
   <mat-form-field class="space-container">
-    <mat-label>Tempo de duração:</mat-label>
-    <input matInput placeholder="Ex. 20" value="">
+    <mat-label>
+      Tempo de duração:
+    </mat-label>
+    <input matInput placeholder="Ex. 20" formControlName="duration">
   </mat-form-field>
 
   <mat-form-field class="space-container">
     <mat-label>Escolha seu plano:</mat-label>
-    <mat-select>
+    <mat-select formControlName="phonePlan">
       <mat-option value="faleMais30">FaleMais 30</mat-option>
       <mat-option value="faleMais60">FaleMais 60</mat-option>
       <mat-option value="faleMais120">FaleMais 120</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button>Simular</button>
+  <button
+    mat-raised-button
+    [disabled]="ifFormValid()"
+    (click)="findDashboard()">
+    Simular
+  </button>
 </form>

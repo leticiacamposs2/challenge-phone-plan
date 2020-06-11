@@ -6,13 +6,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardFilterComponent } from './dashboard-filter/dashboard-filter.component';
+import { DashboardResultListComponent } from './dashboard-result-list/dashboard-result-list.component';
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardFilterComponent],
+  declarations: [DashboardComponent, DashboardFilterComponent, DashboardResultListComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -21,6 +23,7 @@ import { DashboardFilterComponent } from './dashboard-filter/dashboard-filter.co
     MatIconModule,
     BrowserModule,
     MatButtonModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
   exports: [DashboardComponent, DashboardFilterComponent]
