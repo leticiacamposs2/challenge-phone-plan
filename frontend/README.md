@@ -7,6 +7,7 @@
 - Angular
 - Angular Material
 - Ícones: [Flaticon](https://www.flaticon.com/)
-- Karma/Jasmine
+- Gifs: [Giphy](https://giphy.com/)
+- Testes: Karma/Jasmine
 
 
