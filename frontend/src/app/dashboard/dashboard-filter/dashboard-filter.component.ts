@@ -14,6 +14,7 @@ export class DashboardFilterComponent implements OnInit {
 
   public dddsOfBrazil;
   public formFilter: FormGroup;
+  // public load: boolean;
 
   @Output('resultFilter') resultFilterEmit = new EventEmitter<number>();
 
@@ -43,8 +44,10 @@ export class DashboardFilterComponent implements OnInit {
   findDashboard() {
     const filter = this.formFilter.getRawValue() as DashboardFilter;
 
-    const result = {
-      dddOrigin: filter.dddsOrigin,
+    // this.load = true;
+
+    const result: DashboardFilter = {
+      dddsOrigin: filter.dddsOrigin,
       dddsDestiny: filter.dddsDestiny,
       duration: filter.duration,
       phonePlan: filter.phonePlan

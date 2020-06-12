@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DashboardComponent } from './dashboard.component';
@@ -24,6 +25,7 @@ import { DashboardResultListComponent } from './dashboard-result-list/dashboard-
     BrowserModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
     BrowserAnimationsModule,
   ],
   exports: [DashboardComponent, DashboardFilterComponent]

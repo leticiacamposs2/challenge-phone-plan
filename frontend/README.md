@@ -1,4 +1,4 @@
-![logotipo-vortx](./src/assets/logo.png)
+![aplicacao-frontend](./src/app/assets/vxtel.png)
 
 --- 
 

@@ -1,0 +1,22 @@
+.example-card {
+  max-width: 300px;
+}
+
+.example-header-image {
+  background-image: url('https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif');
+  /* background-size: cover; */
+}
+
+h1 {
+  color: #3f51b5;
+  font-size: 55px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.space {
+  margin: 50px;
+}
