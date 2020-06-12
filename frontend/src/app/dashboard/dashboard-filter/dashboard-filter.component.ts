@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ServicesService } from '../../services/services.service';
 import { DddsOfBrazil } from '../../models/ddds-of-brazil';
 import { DashboardFilter } from './dashboard-filter';
+import { PhonePlan } from '../../models/phone-plan';
 
 @Component({
   selector: 'app-dashboard-filter',
@@ -13,6 +14,7 @@ import { DashboardFilter } from './dashboard-filter';
 export class DashboardFilterComponent implements OnInit {
 
   public dddsOfBrazil;
+  public planFaleMais = [];
   public formFilter: FormGroup;
   // public load: boolean;
 
@@ -30,7 +32,7 @@ export class DashboardFilterComponent implements OnInit {
       dddsOrigin: [this.getDDDs(), Validators.required],
       dddsDestiny: [this.getDDDs(), Validators.required],
       duration: ['', Validators.required],
-      phonePlan: ['', Validators.required]
+      phonePlan: [this.getPhonePlan(), Validators.required]
     });
   }
 
@@ -38,6 +40,15 @@ export class DashboardFilterComponent implements OnInit {
     await this.service.getDddsOfBrazil()
       .subscribe((ddds: DddsOfBrazil) => {
         this.dddsOfBrazil =  ddds.payload;
+      });
+  }
+
+  async getPhonePlan() {
+    await this.service.getPhonePlan()
+      .subscribe(res => {
+        res.forEach(item => {
+          this.planFaleMais.push(item.plan);
+        });
       });
   }
 

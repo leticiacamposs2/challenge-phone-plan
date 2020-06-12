@@ -5,7 +5,7 @@
 ## Challenge
 
 - Simulador de chamadas de longa distância nacional da empresa de telefonia VxTel.
-- [Requisitos.](https://www.clear.com.br/uploads/ShowmethecodeBackend.pdf)
+- [Requisitos.](https://www.vortx.com.br/uploads/ShowmethecodeBackend.pdf)
 
 ---
 
@@ -18,7 +18,7 @@
 
 - Frontend:
     - Acesse a pasta frontend e instale as dependências do projeto com o comando `npm install`
-    - Suba a aplicação com o comando `ng serve`
+    - Suba a aplicação com o comando `npm start`
     - A aplicação estará disponível na seguinte url: http://localhost:4200/
 
 ---

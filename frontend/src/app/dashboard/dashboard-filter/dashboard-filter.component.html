@@ -33,9 +33,11 @@
   <mat-form-field class="space-container">
     <mat-label>Escolha seu plano:</mat-label>
     <mat-select formControlName="phonePlan">
-      <mat-option value="faleMais30">FaleMais 30</mat-option>
-      <mat-option value="faleMais60">FaleMais 60</mat-option>
-      <mat-option value="faleMais120">FaleMais 120</mat-option>
+      <mat-option
+      *ngFor="let plan of planFaleMais"
+      [value]="plan">
+      {{plan}}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 

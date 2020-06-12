@@ -4,8 +4,10 @@ import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 import { DddsOfBrazil } from '../models/ddds-of-brazil';
+import { PhonePlan } from '../models/phone-plan';
 
-const API_URL = 'http://ddd.pricez.com.br/ddds.json';
+const API_DDDS_URL = 'http://ddd.pricez.com.br/ddds.json';
+const API_PHONE_PLAN_URL = 'http://localhost:3333/api/v1/phone-plan';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,14 @@ export class ServicesService {
   };
 
   getDddsOfBrazil(): Observable<DddsOfBrazil> {
-    return this.httpClient.get <DddsOfBrazil>(API_URL)
+    return this.httpClient.get<DddsOfBrazil>(API_DDDS_URL)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  getPhonePlan(): Observable<any> {
+    return this.httpClient.get('/api/v1/phone-plan')
       .pipe(
         retry(2),
         catchError(this.handleError));
