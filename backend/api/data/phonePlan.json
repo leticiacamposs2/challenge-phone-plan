@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "plan": "FaleMais 30",
+        "minute": 30
+    },
+    {
+        "id": 2,
+        "plan": "FaleMais 60",
+        "minute": 60
+    },
+    {
+        "id": 3,
+        "plan": "FaleMais 120",
+        "minute": 120
+    }
+]

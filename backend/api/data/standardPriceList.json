@@ -3,36 +3,36 @@
         "id": 1,
         "dddsOrigin": 11,
         "dddsDestiny": 16,
-        "minute": 1.90
+        "minutePrice": 1.90
     },
     {
         "id": 2,
         "dddsOrigin": 16,
         "dddsDestiny": 11,
-        "minute": 2.90
+        "minutePrice": 2.90
     },
     {
         "id": 3,
         "dddsOrigin": 11,
         "dddsDestiny": 17,
-        "minute": 1.70
+        "minutePrice": 1.70
     },
     {
         "id": 4,
         "dddsOrigin": 17,
         "dddsDestiny": 11,
-        "minute": 2.70
+        "minutePrice": 2.70
     },
     {
         "id": 5,
         "dddsOrigin": 11,
         "dddsDestiny": 18,
-        "minute": 0.90
+        "minutePrice": 0.90
     },
     {
         "id": 6,
         "dddsOrigin": 18,
         "dddsDestiny": 11,
-        "minute": 1.90
+        "minutePrice": 1.90
     }
 ]

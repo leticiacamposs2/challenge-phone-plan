@@ -1,5 +1,5 @@
-module.exports = () => {
-    const standardPriceListDB = require('../data/standardPriceList.json');
+module.exports = app => {
+    const standardPriceListDB = app.data.standardPriceList;
     const controller = {};
 
     controller.listStandardPrice = (req, res) => res.status(200).json(standardPriceListDB);
