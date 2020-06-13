@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { ServicesService } from './services.service';
+import { DddsService } from './ddds.service';
 import { DddsOfBrazil } from '../models/ddds-of-brazil';
 
-describe('ServicesService', () => {
-  let service: ServicesService;
+describe('DddsService', () => {
+  let service: DddsService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ServicesService]
+      providers: [DddsService]
     });
-    service = TestBed.inject(ServicesService);
+    service = TestBed.inject(DddsService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 

@@ -13,7 +13,7 @@
 
 - Backend:
     - Acesse a pasta backend e instale as dependências do projeto com o comando `npm install`
-    - Suba o serviço com o comando `npm run dev`
+    - Suba o serviço com o comando `npm start`
     - O serviço estará disponível na seguinte url: http://localhost:3333/
 
 - Frontend:

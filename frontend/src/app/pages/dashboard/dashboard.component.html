@@ -1,0 +1,25 @@
+<h1>Conheça o nosso plano FaleMais e simule as tarifas da sua ligação:</h1>
+<article class="filter">
+  <mat-card>
+    <app-dashboard-filter
+      (resultFilter)="getResultDashboardFilter($event)">
+    </app-dashboard-filter>
+  </mat-card>
+</article>
+<article>
+  <mat-progress-bar
+    *ngIf="isLoad"
+    mode="query">
+  </mat-progress-bar>
+</article>
+<article class="result-list">
+  <app-dashboard-result-list
+    *ngIf="simulation"
+    [excedent-minutos]="simulation['excedentMinutos']"
+    [standard-price]="simulation['standardPrice']"
+    [img-excedent-minutos]="simulation['imgExcedentMinutos']"
+    [img-standard-price]="simulation['imgStandardPrice']"
+    [message]="simulation['message']"
+    [img-not-found]="simulation['imgNotFound']">
+  </app-dashboard-result-list>
+</article>

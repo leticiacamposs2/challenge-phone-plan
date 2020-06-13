@@ -2,26 +2,29 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 
+import { DddsService } from '../../services/ddds.service';
+import { PhonePlanService } from '../../services/phone-plan.service';
 import { DashboardFilterComponent } from './dashboard-filter.component';
-import { ServicesService } from '../../services/services.service';
 
 describe('DashboardFilterComponent', () => {
   let component: DashboardFilterComponent;
   let fixture: ComponentFixture<DashboardFilterComponent>;
-  let service: ServicesService;
+  let dddsService: DddsService;
+  let phonePlanService: PhonePlanService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardFilterComponent ],
       imports: [HttpClientModule],
-      providers: [ServicesService]
+      providers: [DddsService, PhonePlanService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardFilterComponent);
-    service = TestBed.inject(ServicesService);
+    dddsService = TestBed.inject(DddsService);
+    phonePlanService = TestBed.inject(PhonePlanService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -103,7 +106,7 @@ describe('DashboardFilterComponent', () => {
       ]
     };
 
-    const spyGetDddsOfBrazil = spyOn(service, 'getDddsOfBrazil')
+    const spyGetDddsOfBrazil = spyOn(dddsService, 'getDddsOfBrazil')
       .and.returnValue(of(mockDdds));
 
     component.getDDDs();

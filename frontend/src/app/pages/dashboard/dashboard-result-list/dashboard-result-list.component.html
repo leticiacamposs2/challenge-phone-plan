@@ -1,0 +1,30 @@
+<article class="flex-container">
+  <mat-card *ngIf="!message" class="width-card space">
+    <mat-card-header>
+      <mat-card-title>Com FaleMais</mat-card-title>
+      <mat-card-subtitle>só economia</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h1>{{ excedentMinutos | currency:'BRL' }}</h1>
+    </mat-card-content>
+    <img mat-card-image [src]="imgExcedentMinutos">
+  </mat-card>
+
+  <mat-card *ngIf="!message" class="width-card space">
+    <mat-card-header>
+      <mat-card-title>Sem FaleMais</mat-card-title>
+      <mat-card-subtitle><del>só economia</del></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h1>{{ standardPrice | currency:'BRL' }}</h1>
+    </mat-card-content>
+    <img mat-card-image [src]="imgStandardPrice">
+  </mat-card>
+
+    <mat-card *ngIf="message" class="width-card space">
+      <mat-card-header>
+        <mat-card-title>{{ message }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="imgNotFound">
+    </mat-card>
+</article>

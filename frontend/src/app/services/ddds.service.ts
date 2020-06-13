@@ -1,34 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 import { DddsOfBrazil } from '../models/ddds-of-brazil';
-import { PhonePlan } from '../models/phone-plan';
 
-const API_DDDS_URL = 'http://ddd.pricez.com.br/ddds.json';
-const API_PHONE_PLAN_URL = 'http://localhost:3333/api/v1/phone-plan';
+const API_URL = 'http://ddd.pricez.com.br/ddds.json';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServicesService {
+export class DddsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
   getDddsOfBrazil(): Observable<DddsOfBrazil> {
-    return this.httpClient.get<DddsOfBrazil>(API_DDDS_URL)
-      .pipe(
-        retry(2),
-        catchError(this.handleError));
-  }
-
-  getPhonePlan(): Observable<any> {
-    return this.httpClient.get('/api/v1/phone-plan')
+    return this.httpClient.get<DddsOfBrazil>(API_URL)
       .pipe(
         retry(2),
         catchError(this.handleError));
@@ -43,5 +30,4 @@ export class ServicesService {
     }
     return throwError(errorMessage);
   }
-
 }

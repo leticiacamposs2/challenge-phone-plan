@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { ServicesService } from '../../services/services.service';
-import { DddsOfBrazil } from '../../models/ddds-of-brazil';
-import { DashboardFilter } from './dashboard-filter';
-import { PhonePlan } from '../../models/phone-plan';
+import { DddsService } from 'src/app/services/ddds.service';
+import { PhonePlanService } from 'src/app/services/phone-plan.service';
+import { SimulationListService } from 'src/app/services/simulation-list.service';
+import { DddsOfBrazil } from 'src/app/models/ddds-of-brazil';
+import { Simulation } from 'src/app/models/simulation';
 
 @Component({
   selector: 'app-dashboard-filter',
@@ -16,11 +17,12 @@ export class DashboardFilterComponent implements OnInit {
   public dddsOfBrazil;
   public planFaleMais = [];
   public formFilter: FormGroup;
-  // public load: boolean;
 
   @Output('resultFilter') resultFilterEmit = new EventEmitter<number>();
 
-  constructor(private service: ServicesService,
+  constructor(private dddsService: DddsService,
+              private phonePlanService: PhonePlanService,
+              private simulationService: SimulationListService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -31,20 +33,20 @@ export class DashboardFilterComponent implements OnInit {
     this.formFilter = this.formBuilder.group({
       dddsOrigin: [this.getDDDs(), Validators.required],
       dddsDestiny: [this.getDDDs(), Validators.required],
-      duration: ['', Validators.required],
+      minute: ['', Validators.required],
       phonePlan: [this.getPhonePlan(), Validators.required]
     });
   }
 
   async getDDDs() {
-    await this.service.getDddsOfBrazil()
+    this.dddsService.getDddsOfBrazil()
       .subscribe((ddds: DddsOfBrazil) => {
-        this.dddsOfBrazil =  ddds.payload;
+        this.dddsOfBrazil = ddds.payload;
       });
   }
 
   async getPhonePlan() {
-    await this.service.getPhonePlan()
+    this.phonePlanService.getPhonePlan()
       .subscribe(res => {
         res.forEach(item => {
           this.planFaleMais.push(item.plan);
@@ -52,19 +54,12 @@ export class DashboardFilterComponent implements OnInit {
       });
   }
 
-  findDashboard() {
-    const filter = this.formFilter.getRawValue() as DashboardFilter;
+  async findDashboard() {
+    const filter = this.formFilter.getRawValue() as Simulation;
 
-    // this.load = true;
-
-    const result: DashboardFilter = {
-      dddsOrigin: filter.dddsOrigin,
-      dddsDestiny: filter.dddsDestiny,
-      duration: filter.duration,
-      phonePlan: filter.phonePlan
-    };
-
-    this.emitResultFilter(result);
+    this.simulationService
+      .newSimulation(filter)
+      .subscribe(res => this.emitResultFilter(res));
   }
 
   ifFormValid(): boolean {

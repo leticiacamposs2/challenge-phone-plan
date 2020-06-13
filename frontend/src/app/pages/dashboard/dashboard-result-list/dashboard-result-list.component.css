@@ -1,10 +1,9 @@
-.example-card {
+.width-card {
   max-width: 300px;
 }
 
 .example-header-image {
   background-image: url('https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif');
-  /* background-size: cover; */
 }
 
 h1 {
