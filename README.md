@@ -33,3 +33,11 @@
     - Angular
     - Angular Material
     - Karma/Jasmine
+
+---
+
+## Testes unitários
+
+- Front-end: (cobertura de 97.37% de código)
+
+![cobertura-de-codigo](./frontend/src/app/assets/coberturaCodigo.png)
