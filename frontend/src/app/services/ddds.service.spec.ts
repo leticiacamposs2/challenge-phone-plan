@@ -3,10 +3,12 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { DddsService } from './ddds.service';
 import { DddsOfBrazil } from '../models/ddds-of-brazil';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('DddsService', () => {
   let service: DddsService;
   let httpMock: HttpTestingController;
+  let mockHeaders;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +19,7 @@ describe('DddsService', () => {
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  it('should be created', () => {
+  it('deve ser criado', () => {
     expect(service).toBeTruthy();
   });
 
@@ -103,5 +105,46 @@ describe('DddsService', () => {
       return req.method === 'GET';
     });
 
+  });
+
+  it('deve retornar mensagem de erro do client', () => {
+
+    const mockErrorEvent = new ErrorEvent('test', {
+      error: new Error('teste'),
+      message: 'test',
+      lineno: 402,
+      filename: 'test.html'
+    });
+
+    const mockErrorResponse: HttpErrorResponse = {
+      error: mockErrorEvent,
+      headers: mockHeaders,
+      name: 'HttpErrorResponse',
+      type: HttpErrorResponse[0],
+      message: 'Http failure response for http://localhost:3333/api/v1/simulation-list/undefined: 404 Not Found',
+      ok: false,
+      status: 404,
+      statusText: 'Not Found',
+      url: 'http://localhost:3333/api/v1/simulation-list/undefined',
+    };
+
+    service.handleError(mockErrorResponse);
+  });
+
+  it('deve retornar mensagem de erro do servidor', () => {
+
+    const mockErrorResponse: HttpErrorResponse = {
+      error: { message: 'not exist' },
+      headers: mockHeaders,
+      name: 'HttpErrorResponse',
+      type: HttpErrorResponse[0],
+      message: 'Http failure response for http://localhost:3333/api/v1/simulation-list/undefined: 404 Not Found',
+      ok: false,
+      status: 404,
+      statusText: 'Not Found',
+      url: 'http://localhost:3333/api/v1/simulation-list/undefined',
+    };
+
+    service.handleError(mockErrorResponse);
   });
 });

@@ -1,4 +1,5 @@
 ![aplicacao-frontend](./src/app/assets/vxtel.png)
+![aplicacao-frontend-not-found](./src/app/assets/notFound.png)
 
 --- 
 

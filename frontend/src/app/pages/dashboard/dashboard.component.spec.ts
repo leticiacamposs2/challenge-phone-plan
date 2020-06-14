@@ -19,7 +19,26 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve criar o componente', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('deve retornar nenhum resultado', () => {
+    const mockEvent = [];
+    component.getResultDashboardFilter();
+    expect(component.simulation).toEqual(mockEvent);
+  });
+
+  it('deve retornar o resultado da busca feita pelo filtro', () => {
+
+    const mockEvent = [{
+        excedentMinutos: 0,
+        imgExcedentMinutos: 'https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif',
+        standardPrice: 38,
+        imgStandardPrice: 'https://media.giphy.com/media/a3zqvrH40Cdhu/giphy.gif'
+    }];
+
+    component.getResultDashboardFilter(mockEvent);
+    expect(component.simulation).toEqual(mockEvent);
   });
 });

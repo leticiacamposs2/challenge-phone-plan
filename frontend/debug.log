@@ -1,0 +1,10 @@
+[0613/190127.525:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0613/190127.537:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0613/190127.537:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0613/190127.537:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0613/190127.537:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0613/190127.537:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0613/190127.537:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0613/190127.544:ERROR:file_io_win.cc(161)] CreateFile C:\Users\LETICI~1.CAM\AppData\Local\Temp\karma-19783463\Crashpad\settings.dat: O sistema não pode encontrar o caminho especificado. (0x3)
+[0613/190127.549:ERROR:file_io_win.cc(170)] CreateFile C:\Users\LETICI~1.CAM\AppData\Local\Temp\karma-19783463\Crashpad\reports\23164dd2-2313-4235-81b3-d2e62aa1bf04.dmp: O sistema não pode encontrar o caminho especificado. (0x3)
+[0613/190127.549:ERROR:crash_report_exception_handler.cc(97)] PrepareNewCrashReport failed

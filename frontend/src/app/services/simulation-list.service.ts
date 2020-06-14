@@ -4,6 +4,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 import { Simulation } from '../models/simulation';
+import { SimulationList } from '../models/simulation-list';
 
 const API_URL = 'http://localhost:3333/api/v1/simulation-list';
 
@@ -18,8 +19,8 @@ export class SimulationListService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  newSimulation(simulation: Simulation): Observable<Simulation> {
-    return this.httpClient.post<Simulation>(API_URL, JSON.stringify(simulation), this.httpOptions)
+  newSimulation(simulation: Simulation): Observable<SimulationList> {
+    return this.httpClient.post<SimulationList>(API_URL, JSON.stringify(simulation), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));

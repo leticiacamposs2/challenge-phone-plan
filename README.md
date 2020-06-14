@@ -20,6 +20,7 @@
     - Acesse a pasta frontend e instale as dependências do projeto com o comando `npm install`
     - Suba a aplicação com o comando `npm start`
     - A aplicação estará disponível na seguinte url: http://localhost:4200/
+    - Testes da aplicação utilize o comando `npm test` 
 
 ---
 

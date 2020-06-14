@@ -1,39 +1,61 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, inject, fakeAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
-import { DddsService } from '../../services/ddds.service';
-import { PhonePlanService } from '../../services/phone-plan.service';
+import { DddsService } from 'src/app/services/ddds.service';
+import { PhonePlanService } from 'src/app/services/phone-plan.service';
+import { SimulationListService } from '../../../services/simulation-list.service';
 import { DashboardFilterComponent } from './dashboard-filter.component';
+import { Simulation } from '../../../models/simulation';
 
 describe('DashboardFilterComponent', () => {
   let component: DashboardFilterComponent;
   let fixture: ComponentFixture<DashboardFilterComponent>;
   let dddsService: DddsService;
   let phonePlanService: PhonePlanService;
+  let simulationService: SimulationListService;
 
-  beforeEach(async(() => {
+  beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardFilterComponent ],
-      imports: [HttpClientModule],
-      providers: [DddsService, PhonePlanService]
+      imports: [
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+      ],
+      providers: [
+        DddsService,
+        PhonePlanService,
+        SimulationListService
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(fakeAsync(inject([FormBuilder], (formBuilder: FormBuilder) => {
     fixture = TestBed.createComponent(DashboardFilterComponent);
     dddsService = TestBed.inject(DddsService);
     phonePlanService = TestBed.inject(PhonePlanService);
+    simulationService = TestBed.inject(SimulationListService);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
 
-  it('should create', () => {
+    component.formFilter = formBuilder.group({
+      dddsOrigin: ['', Validators.required],
+      dddsDestiny: ['', Validators.required],
+      minute: ['', Validators.required],
+      phonePlan: ['FaleMais 20', Validators.required]
+    });
+  })));
+
+  it('deve criar o componente', () => {
     expect(component).toBeTruthy();
   });
 
-  it('deve retornar os DDDS do Brasil', () => {
+  it('deve chamar o serviço que retornar os DDDS do Brasil', () => {
     const mockDdds = {
       payload: [
         '11',
@@ -112,5 +134,60 @@ describe('DashboardFilterComponent', () => {
     component.getDDDs();
 
     expect(spyGetDddsOfBrazil).toHaveBeenCalled();
+  });
+
+  it('deve chamar o serviço que retorna os planos de telefone disponíveis da FaleMais', () => {
+    const mockPhonePlan = [
+      {
+        id: 1,
+        plan: 'FaleMais 30',
+        minute: 30
+      },
+      {
+        id: 2,
+        plan: 'FaleMais 60',
+        minute: 60
+      },
+      {
+        id: 3,
+        plan: 'FaleMais 120',
+        minute: 120
+      }
+    ];
+
+    const spyGetPhoneplan = spyOn(phonePlanService, 'getPhonePlan')
+      .and.returnValue(of(mockPhonePlan));
+
+    component.getPhonePlan();
+
+    expect(spyGetPhoneplan).toHaveBeenCalled();
+  });
+
+  it('deve buscar os dados de acordo com o filtro realizado', () => {
+    const mockFilter: Simulation = {
+      dddsOrigin: 11,
+      dddsDestiny: 16,
+      minute: '20',
+      phonePlan: 'FaleMais 60'
+    };
+
+    const mockSimulation = {
+      excedentMinutos: 0,
+      imgExcedentMinutos: 'https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif',
+      standardPrice: 38,
+      imgStandardPrice: 'https://media.giphy.com/media/a3zqvrH40Cdhu/giphy.gif'
+    };
+
+    const spySimulation = spyOn(simulationService, 'newSimulation')
+      .withArgs(mockFilter).and.returnValue(of(mockSimulation));
+
+    component.findDashboard();
+
+    expect(spySimulation).toHaveBeenCalled();
+    expect(component.emitResultFilter(mockSimulation)).toHaveBeenCalled();
+  });
+
+  it('deve retornar true quando os campos obrigatórios do formulário não for preenchido', () => {
+
   });
 });

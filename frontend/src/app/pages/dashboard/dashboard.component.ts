@@ -13,12 +13,6 @@ export class DashboardComponent {
   public simulation: SimulationList[];
 
   getResultDashboardFilter(event = []) {
-
     this.simulation = event;
-
-    console.log('simulation', this.simulation);
-    console.log('event', event);
-
-    console.log('event', event.length);
   }
 }

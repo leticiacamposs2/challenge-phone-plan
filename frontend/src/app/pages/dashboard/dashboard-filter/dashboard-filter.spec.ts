@@ -1,7 +1,7 @@
 import { DashboardFilter } from './dashboard-filter';
 
 describe('DashboardFilter', () => {
-  it('should create an instance', () => {
+  it('deve criar uma instancia', () => {
     expect(new DashboardFilter()).toBeTruthy();
   });
 });
