@@ -1,7 +1,3 @@
-![logotipo-vortx](./frontend/src/assets/logo.png)
-
---- 
-
 ## Challenge
 
 - Simulador de chamadas de longa distância nacional da empresa de telefonia VxTel.
